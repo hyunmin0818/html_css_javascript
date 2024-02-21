@@ -1,0 +1,80 @@
+1. checkbox
+ - 체크박스는 여러 개의 항목들 중에서 복수 선택이 가능한
+ 요소이다. 
+	<input type='checkbox' name="hello" value='1'/>
+	<input type='checkbox' name="hello" value='2'/>
+	<input type='checkbox' name="hello" value='3'/>
+
+ - 사용자가 선택한 항목에 대한 접근 가상 셀렉터 ':checked'를
+ 사용해야 한다. 
+
+	let el = $('셀렉터:checked');
+
+ - 체크박스는 복수 선택이 가능하기 때문에 접근 요소는 배열 상태가
+ 된다.  가져온 요소가 배열이기 때문에 반복문 으로 처리해야 한다.
+
+	for(let i=0; i<el.length; i++){
+		let value = $(el[i]).val();
+	}
+
+2. HTML 요소에 대한 반복 처리가 필요한 경우
+ - HTML 요소를 원소르 갖는 배열에 대한 반복 처리를 수행하는 경우
+ 배열의 각 원소에 대한 index값을 사용하여 원소에 접근해야 한다. 
+	for(let i=0; i<el.length; i++){
+		let value = $(el[i]).val();
+	}
+
+ - $.each() 함수는 HTML 요소의 수 만큼 콜백함수를 호출하면서
+ 배열의 인덱스와 원소를 파라미터로 전달한다. 
+	$.each(el, function(index, item){
+		// index : 배열의 위치
+		// item : 배열의 각 원소
+		let value = $(item).val();
+	});
+3. 요소에 포커스가 들어 갔음을 감지하는 이벤트
+ - focus()는 함수로서 사용할 경우 강제로 포커스를 지정하는
+ 기능을 갖지만, 이벤트로서 사용할 경우 포커스가 들어갔음을
+ 감지하는 기능을 한다. 
+ - blur() 함수는 포커스가 빠져나왔음을 감지한다. 
+
+4. HTML속성
+ - attribute
+	-> 설정값 조회 기능 : attr(key)
+	-> 값 설정 기능 : attr(key, value)
+ - property : 값을 갖지 않은 속성
+	-> prop(key) : 설정값 조회 기능
+	-> prop(key, boolean) : 값 설정 기능
+ - property는 별도의 값 없이 이름만 명시하는 속성이다.
+ ex) disabled, checked, selected 속성 등
+ 
+ 4-1. 요소의 프로퍼티 설정 예시
+  - disabled 속성을 부여하면 해당 요소가 비활성화 되므로,
+  jQuery에서는 true 값을 부여해야 비활성화 된다.
+  	-> $("셀렉터").prop("disabled",true);
+  - 특정 입력 항목에 대한 활성화 처리
+	-> $("셀렉터").prop("disabled",false);
+  - 특정 체크박스에 대한 선택 처리
+	-> $("셀렉터").prop("checked",true);
+
+5. 정규표현식
+ 5-1. 자바스크립트에서 정규표현식의 사용
+  - 자바스크립트에서 정규표현식의 사용
+	let regex = /정규표현식/;
+	if( !regex.test("검사할문자열") ){...}
+  	-> javascript는 정규표현식을 슬래시(/)로 감싸서 
+	표현한다. (따옴표가 아님에 주의)
+	-> 정규표현식은 하나의 객체 형태가 되고, 내장하고
+	있는 test()메서드를 통해 문자열이 그 식에 부합할
+	경우 true, 그렇지 않을 경우 false를 리턴한다
+	-> 정규표현식의 검사 결과는 보통 문자열이 식에
+	부합되지 않을 때에 대한 예외처리가 대부분이기
+	때문에 조건문으로 리턴값을 부정하여 문자열이
+	부합하지 않을 경우에 대한 처리를 구현한다. 
+
+
+
+
+
+
+
+

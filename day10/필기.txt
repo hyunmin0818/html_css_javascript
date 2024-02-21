@@ -1,0 +1,107 @@
+1. 기본동작의 취소
+ - 웹브라우저의 구성요소들은 각각 기본적인 동작
+ 방법을 가지고 있다
+ - 이러한 기본적인 동작들을 기본 이벤트라고 하는데
+ 사용자가 만든 이벤트를 이용해서 기본 동작을 취소할
+ 수 있다.
+
+2. form태그 처리
+ 2-1. input
+<form name="form1">
+        <input type="text" name="user_name" id="user_name">
+</form>
+
+ - <form> 태그에 지정되는  name속성을 통하여 객체를 획득가능
+	let myform = document.form1;
+
+ - form 객체는 자신이 포함한 모든 <input>,<select>, ... 태그에 대한
+ 하위 객체를 갖는다. 이 하위 객체들은 name속성을 통하여 접근할
+ 수 있다.
+	let user_name = myform.user_name;
+	let user_name = document.form1.user_name;
+
+ - 입력값의 설정 : 텍스트 입력 형식의 컴포넌트가 가지고 있는 
+ value속성에 문자열을 대입하면, 입력 컴포넌트의 내용을 javascript에서
+ 강제로 설정할 수 있다.
+
+	document.form1.user_name.value = "kjh";
+
+ 2-2. select
+ - <select> 태그 안에 포함된 <option>태그 중에서 몇 번째 항목이
+ 선택되었는지를 파악하기 위해서는 <select> 태그 객체의 
+ selectedIndex 속성을 사용한다. 
+ - 선택 위치는 0 부터 시작
+
+   <form name="form2">
+        <select name="sel1">
+            <option>----선택하세요----</option>
+            <option value="item1">항목1</option>
+            <option value="item2">항목2</option>
+        </select>
+    </form>
+ - 사용자가 선택한 위치 :  document.form2.sel1.selectedIndex;
+ - <select>태그 객체의 selectedIndex속성에 임의의 숫자값을 
+ 대입하면 대입한 위치에 해당하는 <option>태그가 강제로 선택된다
+ : document.form2.sel1.selectedIndex = 1;
+ (인덱스는 0부터 시작)
+ - 선택 항목의 값 조회
+ : <select> 태그의 객체는 하위 <option> 태그 객체를 배열 형태로
+ 가지고 있기 때문에, 배열의 인덱스 값을 selectedIndex 속성값으로
+ 사용하면, 선택한 <option> 태그의 객체를 획득할 수 있다.
+ : document.form2.sel1[document.form2.sel1.selectedIndex].value
+
+ 2-3. 라디오버튼
+ - 라디오버튼도 하나의 그룹응로 묶기 위해서 name 속성의 값을
+ 동일하게 지정하기 때문에 javascript에서 name속성을 통하여 접근 할
+ 경우 배열로 처리된다는 공통점을 가지고 있다.
+  <form name="form3">
+        <input type="radio" name="gender" value="M"> 남자
+        <input type="radio" name="gender" value="F"> 여자
+    </form>
+ - document.form3.gender[1].value : 2번째 요소의 value값을 획득
+ - document.form3.gender[1].checked : 체크여부
+ - document.form3.gender[1].checked = true; : 강제 체크
+
+3. 마우스 이벤트
+ - click 		: 클릭했을 때
+ - dblclick 		: 더블클릭 했을 때
+ - mousedown 	: 마우스를 누를 때
+ - mouseup 	: 마우스버튼을 땔 때
+ - mousemove 	: 마우스를 움직일 때
+ - mouseover	: 마우스가 엘리먼트에 집입할 때
+ - mouseout	: 마우스가 엘리먼트에 빠져나갈 때
+ - contextmenu	: 컨텍스트 메뉴가 실행될 때
+
+-------------------------------------------------------
+1. jQuery
+ 1-1. 라이브러리
+  - 자주 사용하는 로직을 재사용할 수 있도록 고안된 
+  소프트웨어를 라이브러리라고한다.
+  - 자주 사용하는 코드들을 재사용할 수 있는 형태로 가공해서
+  프로그래밍 효율을 높여주는 코드들이다.
+
+ 1-2. jQuery
+  - jQuery는 DOM을 내부에 감추고 보다 쉽게 웹페이지를
+  조작할 수 있도록 돕는 도구이다.
+  - 엘리먼트를 선택하는 강력한 방법
+  - 선택된 엘리먼트들을 효율적으로 제어할 수 있는 다양한
+  수단을 제공하는 자바스크립트 라이브러리
+
+2. jquery selector
+
+	$('li').css('color','tomato');
+ - $ : jQuery
+ - $('.클래스이름') 	: 클래스로 접근
+ - $('#id)		: id로 접근
+ - $('태그')		: 태그로 접근
+ - $(tagname[name=태그명])	: name의 태그명을 통해 접근
+ - $('a, b')		: 여러개 선택
+ - $('a>b')		: 자식
+ - $('a b')		: 자손
+
+
+
+
+
+
+

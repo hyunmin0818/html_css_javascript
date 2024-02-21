@@ -1,0 +1,82 @@
+1. Math 객체
+
+2. Date 객체 
+ - setInterval() 함수
+	-> 1/1000초 단위의 시간값을 파라미터로 설정하여
+	정해진 시간에 한번씩 파라미터로 전달된 함수를
+	반복적으로 호출한다. 
+	
+	// printTime 함수를 1초에 한번씩 반복해서 자동 호출
+	setInterval(printTime, 1000);
+
+ - setTimeout
+	-> 지정된 시간만큼 딜레이 한 후 파라미터로 전달된
+	함수를 1회만 호출한다.
+	// printTime이라는 함수를 2초 후 한번만 호출한다.
+	setTimeout(printTime, 2000);
+
+3. String
+ 
+4. 웹 브라우저와 javascript
+ - 웹에 올라가는 것은 html, css, javascript
+
+5. HTML에서 자바스크립트 로드하기
+  - inline
+	-> 직접 자바스크립트를 기술하는 방식이다. 장점음
+	태그에 연관된 스크립트가 분명하게 드러난다는 점.
+	단점은 HTML태그와 JS가 섞여 있기 때문에
+	유지보수가 어렵다
+
+ - script
+	-> <script> 태그를 만들어서 자바스크립트 코드를
+	삽입하는 방식,
+	-> 장점은 html, js를 분리할 수 있다는 점
+
+6. Object Model
+  - window 
+	-> window객체는 DOM을 포함한 브라우저의 창을
+	나타낸다. 
+	-> 자바스크립트의 모든 객체, 전역 함수, 전역 변수들은
+	자동으로 window객체의 프로퍼티가 된다. 
+	-> javascript의 전역 객체이면서, 동시에 웹브라우저의
+	창이나 프레임을 제어하는 역할을 한다. 
+
+ - DOM
+	-> document object model
+ - BOM
+	-> browser object model
+ - javascript core
+
+
+7. location 객체
+ - location객체는 문서의 주소와 과련된 객체로 window객체의
+ 프로퍼티이다. 
+ - 이 객체를 이용해서 윈도우 문서 url을 변경할 수 있고,
+ 문서의 위치와 관련해서 다양한 정보를 얻을 수 있다. 
+
+8. 특정 HTML 요소를 객체형태로 가져오기
+ - document.getElementsByTagName
+ - document.getElementsByClassName
+ - document.getElementById
+
+9. 이벤트
+ - event는 어떤 사건을 의미한다. 브라우저에서의 사건이란
+ 사용자가 클릭을 했을 때, 스크롤을 했을 때, 필드의 내용을
+ 바꾸었을 때 와 같은 것을 의미한다.
+ - onClick이벤트 
+	-> 대상 요소가 클릭되었을 경우 동작한다.
+
+10. 획득한 HTML 태그 요소를 제어하기
+ - 획득한 태그 요소를 제어하는 방법이란, 해당 태그의 
+ 시작과 끝 사이에 어떠한 내용을 새롭게 지정하거나 기존의
+ 내용을 삭제하는 것을 의미한다
+ 	<p>... 내용.. </p>
+
+ - 획득한 태그 안에 새로운 내용을 적용하기 위해서는
+ innerHTML이라는 값을 사용한다. 
+	document.getElementById("id값").innerHTML = "값";
+
+
+
+
+
