@@ -60,7 +60,7 @@ function paint_cell(x, y, color) {
 createSnake();
 placeFood();
 paint();
-updateScore(); // 점수 초기화
+updateScore();
 
 // 키보드 입력 처리 함수
 $(document).keydown(function (e) {
