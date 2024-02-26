@@ -13,7 +13,6 @@ let snake = [];
 let d = "RIGHT";
 
 let currentScore = 0;
-
 // 먹이의 위치를 랜덤으로 추출
 function placeFood() {
   food = {
@@ -23,13 +22,16 @@ function placeFood() {
   };
 }
 
-// 뱀의 초기 위치 설정 함수
+// 뱀의 위치를 랜덤으로 추출
 function createSnake() {
-  let length = 4; // 뱀의 초기 길이
-  snake = [];
-  for (let i = length - 1; i >= 0; i--) {
-    snake.push({ x: i, y: 0 });
-  }
+  snake = []; // snake을 배열로 초기화
+  snake.push({
+    x: Math.round((Math.random() * (w - sq)) / sq),
+    y: Math.round((Math.random() * (h - sq)) / sq),
+  });
+  currentScore = -10; // 점수 초기화
+  final = 0;
+  updateScore();
 }
 
 // 스네이크와 먹이를 그리는 함수
@@ -81,7 +83,7 @@ function update() {
   else if (d === "UP") headY--;
   else if (d === "DOWN") headY++;
 
-  // 게임 오버 조건 검사 (벽에 부딪힐 경우)
+  // 게임 오버 조건 검사
   if (
     headX >= w / sq ||
     headX < 0 ||
@@ -89,14 +91,17 @@ function update() {
     headY < 0 ||
     collision(headX, headY, snake)
   ) {
-    // 여기에 게임 오버 처리를 작성합니다.
     clearInterval(gameLoop);
-    alert("Game Over");
+    // 최종 점수를 게임 오버 화면에 업데이트
+    $("#final").text(currentScore);
+    // 게임 오버 화면을 표시
+    $("#gameover").show();
+
     // food와 snake의 위치를 최초 세팅
     createSnake();
     placeFood();
     d = "RIGHT";
-    currentScore = 0;
+    Score = 0;
     updateScore(); // 점수 초기화
     gameLoop = setInterval(update, 100);
     return;
@@ -105,20 +110,20 @@ function update() {
   let tail;
   if (headX === food.x && headY === food.y) {
     tail = { x: headX, y: headY };
-    placeFood(); // 먹이를 다시 배치합니다.
-    updateScore(); // 먹이를 먹을 때마다 점수 업데이트
+    placeFood();
+    updateScore();
   } else {
     tail = snake.pop();
     tail.x = headX;
     tail.y = headY;
   }
 
-  snake.unshift(tail); // 뱀의 머리 부분에 새 요소를 추가합니다.
+  snake.unshift(tail);
 
-  paint(); // 스네이크와 먹이를 다시 그립니다.
+  paint();
 }
 
-// 먹이와 뱀이 충돌하는지 검사하는 함수
+// 먹이와 뱀이 충돌하는지 검사
 function collision(x, y, array) {
   for (let i = 0; i < array.length; i++) {
     if (array[i].x === x && array[i].y === y) return true;
@@ -131,6 +136,6 @@ let gameLoop = setInterval(update, 100);
 
 // 점수 업데이트 함수
 function updateScore() {
-  $("#currentScore").text(currentScore); // HTML에 현재 점수 반영
-  currentScore += 777;
+  $("#currentScore").text(currentScore);
+  currentScore += 10;
 }
